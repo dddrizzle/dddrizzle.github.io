@@ -4,227 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For You</title>
-    <style>
-        body {
-            background-color: #1a1a2e;
-            color: #e94560;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden; /* Prevents scrollbars during the falling game */
-        }
-        .container {
-            background-color: #16213e;
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            max-width: 500px;
-            width: 85%;
-            z-index: 10;
-        }
-        h1 { font-size: 2em; color: #ffffff; margin-bottom: 10px; }
-        p { font-size: 1.2em; color: #a2a8d3; margin-bottom: 20px; line-height: 1.5; }
-        .hidden { display: none !important; }
-        
-        /* Buttons */
-        button {
-            background-color: #e94560;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        button:hover { background-color: #d1304b; }
-
-        /* Memory Game Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin: 20px auto;
-            max-width: 300px;
-        }
-        .card {
-            background-color: #a2a8d3;
-            height: 60px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .card.flipped { background-color: #e94560; cursor: default; }
-
-        /* Falling Hearts */
-        @keyframes fall {
-            from { top: -50px; }
-            to { top: 100vh; }
-        }
-        .falling-heart {
-            position: fixed;
-            font-size: 40px;
-            cursor: pointer;
-            user-select: none;
-            animation: fall 3s linear forwards;
-            z-index: 5;
-        }
-
-        /* Final Heartbeat */
-        .heart {
-            font-size: 60px;
-            animation: heartbeat 1.5s infinite;
-            margin: 20px 0;
-        }
-        @keyframes heartbeat {
-            0%, 40%, 80%, 100% { transform: scale(1); }
-            20%, 60% { transform: scale(1.2); }
-        }
-    </style>
+    <!-- Links to your new CSS file -->
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
+    <div class="stars"></div>
 
     <!-- STAGE 1: Distance Closer -->
-    <div id="stage1" class="container">
+    <div id="stage1" class="glass-panel">
         <h1>Distance Between Us</h1>
-        <h2 id="dist-text" style="color: #e94560; font-size: 3em; margin: 20px 0;">500 km</h2>
+        <h2 id="dist-text" class="neon-text">500 km</h2>
         <p>Click the button to close the gap.</p>
-        <button onclick="reduceDistance()">Drive Closer</button>
+        <button onclick="reduceDistance()" class="neon-button">Drive Closer</button>
     </div>
 
-    <!-- STAGE 2: Memory Game -->
-    <div id="stage2" class="container hidden">
+    <!-- STAGE 2: The Lab Quiz -->
+    <div id="stage2" class="glass-panel hidden">
         <h1>Lab Partner Test</h1>
-        <p>Match the pairs to unlock the next stage.</p>
-        <div class="grid" id="memory-board"></div>
+        <p>What is the powerhouse of the cell?</p>
+        <div class="quiz-options">
+            <button onclick="wrongAnswer()" class="neon-button">Ribosome</button>
+            <button onclick="correctAnswer()" class="neon-button">Mitochondria</button>
+            <button onclick="wrongAnswer()" class="neon-button">Nucleus</button>
+        </div>
+        <p id="quiz-feedback" class="hidden" style="color: #ff4d4d; margin-top: 15px;"></p>
     </div>
 
-    <!-- STAGE 3: Heart Catcher -->
-    <div id="stage3" class="container hidden">
+    <!-- STAGE 3: The Bass Track -->
+    <div id="stage3" class="glass-panel hidden">
+        <h1>A Track For You</h1>
+        <p>Listen to this to unlock the next stage.</p>
+        
+        <!-- PLACEHOLDER: Replace 'bass-track.mp3' with your actual audio file name -->
+        <audio id="bass-audio" controls onplay="unlockNextStage()">
+            <source src="bass-track.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <br><br>
+        <button id="audio-next-btn" onclick="nextStage('stage3', 'stage4')" class="neon-button hidden">Proceed</button>
+    </div>
+
+    <!-- STAGE 4: Heart Catcher -->
+    <div id="stage4" class="glass-panel hidden">
         <h1>Incoming!</h1>
-        <p>Tap or click 5 falling hearts before they hit the ground.</p>
-        <h2 id="catch-score" style="color: #e94560;">0 / 5 Caught</h2>
-        <button id="start-catch-btn" onclick="startCatchGame()">Start Catching</button>
+        <p>Catch 5 falling hearts.</p>
+        <h2 id="catch-score" class="neon-text">0 / 5 Caught</h2>
+        <button id="start-catch-btn" onclick="startCatchGame()" class="neon-button">Start Catching</button>
     </div>
 
     <!-- FINAL STAGE: The Message -->
-    <div id="stage4" class="container hidden">
+    <div id="stage5" class="glass-panel hidden">
         <h1>Hey [Her Name],</h1>
-        <div class="heart">❤️</div>
+        <div class="heart neon-text">❤️</div>
         <p>You made it through the gauntlet!</p>
+        
+        <!-- PLACEHOLDER: Replace 'our-photo.jpg' with your actual image file name -->
+        <img src="our-photo.jpg" alt="A photo for you" class="final-photo">
+        
         <p>We might be miles apart, but you are the perfect half to our mutualistic symbiosis. 🦠🔬</p>
-        <p>I usually stick to the backend, but I built this just for you.</p>
+        <p>I built this just for you.</p>
     </div>
 
-    <script>
-        // --- Navigation Logic ---
-        function nextStage(hideId, showId) {
-            document.getElementById(hideId).classList.add('hidden');
-            document.getElementById(showId).classList.remove('hidden');
-        }
-
-        // --- STAGE 1 Logic ---
-        let distance = 500;
-        function reduceDistance() {
-            distance -= 100;
-            document.getElementById('dist-text').innerText = distance + ' km';
-            if (distance <= 0) {
-                setTimeout(() => {
-                    nextStage('stage1', 'stage2');
-                    initMemoryGame();
-                }, 500);
-            }
-        }
-
-        // --- STAGE 2 Logic ---
-        const emojis = ['🧬','🧬','🦠','🦠','🧫','🧫','🔬','🔬'];
-        let flippedCards = [];
-        let matchedPairs = 0;
-
-        function initMemoryGame() {
-            const board = document.getElementById('memory-board');
-            // Shuffle array (similar to Python's random.shuffle)
-            const shuffled = [...emojis].sort(() => Math.random() - 0.5);
-            
-            shuffled.forEach((emoji, index) => {
-                let card = document.createElement('div');
-                card.className = 'card';
-                card.dataset.emoji = emoji;
-                card.onclick = () => flipCard(card);
-                board.appendChild(card);
-            });
-        }
-
-        function flipCard(card) {
-            // Prevent clicking more than 2 cards at a time or clicking an already flipped card
-            if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
-                card.innerText = card.dataset.emoji;
-                card.classList.add('flipped');
-                flippedCards.push(card);
-
-                if (flippedCards.length === 2) {
-                    setTimeout(checkMatch, 600);
-                }
-            }
-        }
-
-        function checkMatch() {
-            if (flippedCards[0].dataset.emoji === flippedCards[1].dataset.emoji) {
-                matchedPairs++;
-                if (matchedPairs === 4) {
-                    setTimeout(() => nextStage('stage2', 'stage3'), 500);
-                }
-            } else {
-                flippedCards[0].innerText = '';
-                flippedCards[1].innerText = '';
-                flippedCards[0].classList.remove('flipped');
-                flippedCards[1].classList.remove('flipped');
-            }
-            flippedCards = [];
-        }
-
-        // --- STAGE 3 Logic ---
-        let caughtHearts = 0;
-        let spawnInterval;
-
-        function startCatchGame() {
-            document.getElementById('start-catch-btn').classList.add('hidden');
-            
-            // Spawn a heart every 800 milliseconds
-            spawnInterval = setInterval(() => {
-                let heart = document.createElement('div');
-                heart.innerText = '❤️';
-                heart.className = 'falling-heart';
-                // Random horizontal position (10% to 90% of screen width)
-                heart.style.left = (Math.random() * 80 + 10) + 'vw';
-                
-                heart.onclick = () => {
-                    heart.remove();
-                    caughtHearts++;
-                    document.getElementById('catch-score').innerText = caughtHearts + ' / 5 Caught';
-                    
-                    if (caughtHearts >= 5) {
-                        clearInterval(spawnInterval);
-                        // Clean up any remaining falling hearts
-                        document.querySelectorAll('.falling-heart').forEach(e => e.remove());
-                        setTimeout(() => nextStage('stage3', 'stage4'), 500);
-                    }
-                };
-                
-                document.body.appendChild(heart);
-                
-                // Remove heart from memory after animation finishes
-                setTimeout(() => heart.remove(), 3000);
-            }, 800);
-        }
-    </script>
+    <!-- Links to your new JS file -->
+    <script src="script.js"></script> 
 </body>
 </html>

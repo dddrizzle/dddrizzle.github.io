@@ -4,13 +4,23 @@ function nextStage(hideId, showId) {
     document.getElementById(showId).classList.remove('hidden');
 }
 
-// STAGE 1: Distance Closer
-let distance = 500;
+// STAGE 1: Distance Closer (Updated)
+const startDistance = 200;
+let currentDistance = 200;
+const kmPerClick = 10; // Requires 20 clicks to finish
+
 function reduceDistance() {
-    distance -= 100;
-    document.getElementById('dist-text').innerText = distance + ' km';
-    if (distance <= 0) {
-        setTimeout(() => nextStage('stage1', 'stage2'), 500);
+    if (currentDistance <= 0) return; // Prevent negative distance
+    
+    currentDistance -= kmPerClick;
+    document.getElementById('dist-text').innerText = currentDistance + ' km';
+    
+    // Calculate how far the car should move (stops at 90% so the car doesn't fall off the screen)
+    let progressPercent = ((startDistance - currentDistance) / startDistance) * 90;
+    document.getElementById('car-sprite').style.left = progressPercent + '%';
+    
+    if (currentDistance <= 0) {
+        setTimeout(() => nextStage('stage1', 'stage2'), 800);
     }
 }
 

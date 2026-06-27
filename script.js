@@ -58,16 +58,34 @@ function popMessage(event) {
 // STAGE 2: Personal Quiz
 const quizData = [
     {
-        question: "[PLACEHOLDER: Where did we first meet?]",
-        options: ["[Wrong Option]", "[Right Option]", "[Wrong Option]"],
+        question: "Which game did we first meet?",
+        options: ["BMR", "Dan's Karaoke", "Grow a Garden"],
         correctIndex: 1, // 0 is first, 1 is second, 2 is third
-        hint: "Think back to that one afternoon..."
+        hint: "Think back to that day..."
     },
     {
-        question: "[PLACEHOLDER: What is my favorite thing about you?]",
-        options: ["[Right Option]", "[Wrong Option]", "[Wrong Option]"],
+        question: "What was our first pet name?",
+        options: ["Dearest", "Love", "Baby"],
         correctIndex: 0,
-        hint: "It has to do with how smart you are."
+        hint: "That one tiktok reel..."
+    },
+    {
+        question: "Our favorite color mixed together?",
+        options: ["Green", "Purple", "Orange"],
+        correctIndex: 0,
+        hint: "Color of the grass..."
+    },
+    {
+        question: "Last movie we watched?",
+        options: ["Obsession", "Toy Story 5", "Colony"],
+        correctIndex: 2,
+        hint: "Slimy stuff, Yuck..."
+    },
+    {
+        question: "When was our Day 0? [mmddyy]",
+        options: ["011306", "051926", "070107"],
+        correctIndex: 1,
+        hint: "Happy anniversary :3..."
     }
 ];
 

@@ -29,6 +29,32 @@ function reduceDistance() {
     }
 }
 
+// STAGE 1.5: Floating Car Messages
+const sweetMessages = [
+    "I love you", 
+    "I'm proud of you", 
+    "Miss you", 
+    "Almost there!", 
+    "You got this!"
+];
+
+function popMessage(event) {
+    let msg = document.createElement('div');
+    
+    // Pick a random message from the array
+    msg.innerText = sweetMessages[Math.floor(Math.random() * sweetMessages.length)];
+    msg.className = 'floating-msg';
+    
+    // Place the text exactly where she clicked/tapped
+    msg.style.left = (event.clientX - 20) + 'px';
+    msg.style.top = (event.clientY - 20) + 'px';
+    
+    document.body.appendChild(msg);
+    
+    // Clean up the text element after the 1.5s animation finishes
+    setTimeout(() => msg.remove(), 1500);
+}
+
 // STAGE 2: Personal Quiz
 const quizData = [
     {

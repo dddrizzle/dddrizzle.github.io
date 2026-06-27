@@ -132,3 +132,27 @@ body {
     transform: scaleX(-1); /* This flips the car horizontally */
     z-index: 2;
 }
+
+/* Fixes button sizes */
+.equal-btn {
+    width: 150px;
+    margin: 10px;
+}
+
+/* Floating message animation for the car */
+.floating-msg {
+    position: fixed; /* Fixed prevents it from breaking the container layout */
+    color: #e94560;
+    font-weight: bold;
+    font-size: 16px;
+    pointer-events: none; /* Prevents the text from blocking her next click */
+    animation: floatUp 1.5s ease-out forwards;
+    z-index: 20;
+    white-space: nowrap;
+    text-shadow: 0 0 5px #0f0c29;
+}
+
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-50px); }
+}

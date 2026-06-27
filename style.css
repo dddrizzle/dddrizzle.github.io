@@ -126,9 +126,9 @@ body {
 #car-sprite {
     position: absolute;
     top: 0px; 
-    left: 0%; /* Starting position */
+    left: 0%; 
     font-size: 35px;
-    transition: left 0.4s ease-in-out; /* Makes the car glide smoothly */
-    transform: translateX(-20%);
+    transition: left 0.4s ease-in-out; 
+    transform: scaleX(-1); /* This flips the car horizontally */
     z-index: 2;
 }

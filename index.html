@@ -13,9 +13,19 @@
     <!-- STAGE 1: Distance Closer -->
     <div id="stage1" class="glass-panel">
         <h1>Distance Between Us</h1>
-        <h2 id="dist-text" class="neon-text">500 km</h2>
-        <p>Click the button to close the gap.</p>
-        <button onclick="reduceDistance()" class="neon-button">Drive Closer</button>
+        <h2 id="dist-text" class="neon-text">200 km</h2>
+        <p>Keep driving to close the gap.</p>
+        
+        <!-- Wiggly Road and Car -->
+        <div class="road-container">
+            <!-- Draws a responsive curved dashed line -->
+            <svg width="100%" height="50" viewBox="0 0 300 50" preserveAspectRatio="none" class="wiggly-road">
+                <path d="M 0 25 Q 25 5, 50 25 T 100 25 T 150 25 T 200 25 T 250 25 T 300 25" fill="transparent" stroke="#a2a8d3" stroke-width="3" stroke-dasharray="8 6"/>
+            </svg>
+            <div id="car-sprite">🚗</div>
+        </div>
+
+        <button onclick="reduceDistance()" class="neon-button">Drive</button>
     </div>
 
     <!-- STAGE 2: The Lab Quiz -->
@@ -58,7 +68,7 @@
 
     <!-- FINAL STAGE: The Message -->
     <div id="stage5" class="glass-panel hidden">
-        <h1>Hey [Her Name],</h1>
+        <h1>Hello Baobei,</h1>
         <div class="heart neon-text">❤️</div>
         <p>You made it through the gauntlet!</p>
         
@@ -68,7 +78,7 @@
         
         <!-- Spotify Embed -->
         <div style="margin: 20px 0;">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID_HERE?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1YJzow8W1hyYpBjlIZWu3k?si=91e8757c701b4188&pt=ec91aa5df8cf86b2be8adecf2f4daed2?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
 
         <p>I built this just for you.</p>

@@ -28,14 +28,13 @@
         <button onclick="reduceDistance()" class="neon-button">Drive</button>
     </div>
 
-    <!-- STAGE 2: The Lab Quiz -->
+    <!-- STAGE 2: The Personal Quiz -->
     <div id="stage2" class="glass-panel hidden">
-        <h1>Lab Partner Test</h1>
-        <p>What is the powerhouse of the cell?</p>
-        <div class="quiz-options">
-            <button onclick="wrongAnswer()" class="neon-button">Ribosome</button>
-            <button onclick="correctAnswer()" class="neon-button">Mitochondria</button>
-            <button onclick="wrongAnswer()" class="neon-button">Nucleus</button>
+        <h1>Us Trivia</h1>
+        <p id="quiz-question" style="min-height: 50px;">Loading question...</p>
+        
+        <div class="quiz-options" id="quiz-buttons">
+            <!-- Buttons injected by JavaScript -->
         </div>
         <p id="quiz-feedback" class="hidden" style="color: #ff4d4d; margin-top: 15px;"></p>
     </div>
@@ -45,24 +44,24 @@
         <h1>A Track For You</h1>
         <p>Turn your volume all the way up so you do not miss a thing. 🔊</p>
         
-        <!-- Hidden Audio Element -->
         <audio id="bass-audio">
             <source src="bass-track.mp3" type="audio/mpeg">
         </audio>
         
-        <!-- Custom Play Button -->
         <button id="custom-play-btn" onclick="playAudio()" class="neon-button round-button">▶ Play Track</button>
         <p id="audio-status" class="hidden" style="color: #a2a8d3;">Listening...</p>
         
         <br><br>
+        <!-- Replay and Proceed buttons -->
+        <button id="replay-btn" onclick="replayAudio()" class="neon-button hidden">🔄 Replay</button>
         <button id="audio-next-btn" onclick="nextStage('stage3', 'stage4')" class="neon-button hidden">Proceed</button>
     </div>
 
     <!-- STAGE 4: Heart Catcher -->
     <div id="stage4" class="glass-panel hidden">
         <h1>Incoming!</h1>
-        <p>Catch 5 falling hearts.</p>
-        <h2 id="catch-score" class="neon-text">0 / 5 Caught</h2>
+        <p>Catch 15 falling hearts.</p>
+        <h2 id="catch-score" class="neon-text">0 / 15 Caught</h2>
         <button id="start-catch-btn" onclick="startCatchGame()" class="neon-button">Start Catching</button>
     </div>
 

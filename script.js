@@ -10,17 +10,22 @@ let currentDistance = 200;
 const kmPerClick = 10; // Requires 20 clicks to finish
 
 function reduceDistance() {
-    if (currentDistance <= 0) return; // Prevent negative distance
+    if (currentDistance <= 0) return; 
     
     currentDistance -= kmPerClick;
     document.getElementById('dist-text').innerText = currentDistance + ' km';
     
-    // Calculate how far the car should move (stops at 90% so the car doesn't fall off the screen)
+    // Calculate progress
     let progressPercent = ((startDistance - currentDistance) / startDistance) * 90;
-    document.getElementById('car-sprite').style.left = progressPercent + '%';
+    
+    // Moves the car
+    document.getElementById('car-sprite').style.left = progressPercent + '%'; 
     
     if (currentDistance <= 0) {
-        setTimeout(() => nextStage('stage1', 'stage2'), 800);
+        setTimeout(() => {
+            nextStage('stage1', 'stage2');
+            loadQuestion(); // <--- Added right here
+        }, 800);
     }
 }
 

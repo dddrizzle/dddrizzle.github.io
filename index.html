@@ -33,13 +33,17 @@
     <!-- STAGE 3: The Bass Track -->
     <div id="stage3" class="glass-panel hidden">
         <h1>A Track For You</h1>
-        <p>Listen to this to unlock the next stage.</p>
+        <p>Turn your volume all the way up so you do not miss a thing. 🔊</p>
         
-        <!-- PLACEHOLDER: Replace 'bass-track.mp3' with your actual audio file name -->
-        <audio id="bass-audio" controls onplay="unlockNextStage()">
+        <!-- Hidden Audio Element -->
+        <audio id="bass-audio">
             <source src="bass-track.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
         </audio>
+        
+        <!-- Custom Play Button -->
+        <button id="custom-play-btn" onclick="playAudio()" class="neon-button round-button">▶ Play Track</button>
+        <p id="audio-status" class="hidden" style="color: #a2a8d3;">Listening...</p>
+        
         <br><br>
         <button id="audio-next-btn" onclick="nextStage('stage3', 'stage4')" class="neon-button hidden">Proceed</button>
     </div>
@@ -58,10 +62,15 @@
         <div class="heart neon-text">❤️</div>
         <p>You made it through the gauntlet!</p>
         
-        <!-- PLACEHOLDER: Replace 'our-photo.jpg' with your actual image file name -->
-        <img src="our-photo.png" alt="A photo for you" class="final-photo">
+        <img src="our-photo.jpg" alt="A photo for you" class="final-photo">
         
         <p>We might be miles apart, but you are the perfect half to our mutualistic symbiosis. 🦠🔬</p>
+        
+        <!-- Spotify Embed -->
+        <div style="margin: 20px 0;">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID_HERE?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+
         <p>I built this just for you.</p>
     </div>
 

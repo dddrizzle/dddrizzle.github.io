@@ -26,9 +26,20 @@ function wrongAnswer() {
 }
 
 // STAGE 3: Bass Track
-function unlockNextStage() {
-    // Listens for the audio 'play' event and reveals the Next button
-    document.getElementById('audio-next-btn').classList.remove('hidden');
+function playAudio() {
+    const audio = document.getElementById('bass-audio');
+    const playBtn = document.getElementById('custom-play-btn');
+    const status = document.getElementById('audio-status');
+    
+    audio.play();
+    playBtn.classList.add('hidden'); // Hides play button
+    status.classList.remove('hidden'); // Shows "Listening..." text
+    
+    // Unlocks the next stage ONLY when audio finishes
+    audio.onended = function() {
+        status.classList.add('hidden');
+        document.getElementById('audio-next-btn').classList.remove('hidden');
+    };
 }
 
 // STAGE 4: Heart Catcher
